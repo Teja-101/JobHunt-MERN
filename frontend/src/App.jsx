@@ -12,7 +12,7 @@ function App() {
   }, []);
 
   const fetchJobs = async () => {
-    const res = await axios.get('http://localhost:5000/jobs');
+    const res = await axios.get('https://jobhunt-backend-i61y.onrender.com/jobs');
     setJobs(res.data);
   };
 
@@ -20,14 +20,14 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(!form.company || !form.position) return;
-    await axios.post('http://localhost:5000/jobs', form);
+    await axios.post('https://jobhunt-backend-i61y.onrender.com/jobs', form);
     setForm({ company: '', position: '' });
     fetchJobs();
   };
 
   // Delete Job
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/jobs/${id}`);
+    await axios.delete(`https://jobhunt-backend-i61y.onrender.com/jobs/${id}`);
     fetchJobs();
   };
 
@@ -37,7 +37,7 @@ function App() {
     const currentIndex = stages.indexOf(currentStatus);
     const nextStatus = stages[currentIndex + 1] || "Applied"; // Cycle through statuses
     
-    await axios.put(`http://localhost:5000/jobs/${id}`, { status: nextStatus });
+    await axios.put(`https://jobhunt-backend-i61y.onrender.com/jobs/${id}`, { status: nextStatus });
     fetchJobs();
   };
 
